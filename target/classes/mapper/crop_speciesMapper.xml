@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.CspeDao">
+  <resultMap id="BaseResultMap" type="com.it.bean.crop_species">
+    <id column="cs_id" jdbcType="INTEGER" property="csId" />
+    <result column="cs_crop_species" jdbcType="VARCHAR" property="csCropSpecies" />
+    <result column="cs_crop_category_id" jdbcType="INTEGER" property="csCropCategoryId" />
+    <result column="cs_state" jdbcType="INTEGER" property="csState" />
+  </resultMap>
+  <select id="cspe" resultMap="BaseResultMap">
+    select
+    cs.*
+    from crop_species cs
+    where
+    cs.cs_crop_category_id=#{csCropCategoryId}
+  </select>
+</mapper>

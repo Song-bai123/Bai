@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.Sample">
+  <resultMap id="BaseResultMap" type="com.it.bean.sample_info">
+    <id column="si_id" jdbcType="INTEGER" property="siId" />
+    <result column="sample_id" jdbcType="VARCHAR" property="sampleId" />
+    <result column="crop_category_id" jdbcType="INTEGER" property="cropCategoryId" />
+    <result column="breed" jdbcType="INTEGER" property="breed" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="township" jdbcType="VARCHAR" property="township" />
+    <result column="village" jdbcType="VARCHAR" property="village" />
+    <result column="household" jdbcType="VARCHAR" property="household" />
+    <result column="harvest_time" jdbcType="TIMESTAMP" property="harvestTime" />
+    <result column="sampling_time" jdbcType="TIMESTAMP" property="samplingTime" />
+    <result column="sampling_people" jdbcType="VARCHAR" property="samplingPeople" />
+    <result column="seasonal" jdbcType="VARCHAR" property="Seasonal"/>
+    <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="pollution_rate" jdbcType="REAL" property="pollutionRate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="isdel" jdbcType="INTEGER" property="isdel" />
+    <result column="input_time" jdbcType="TIMESTAMP" property="inputTime" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="enterpeople" jdbcType="INTEGER" property="enterpeople" />
+    <result column="varieties" jdbcType="VARCHAR" property="varieties" />
+    <result column="allToxin" jdbcType="VARCHAR" property="toxinsStr" />
+
+    <association property="cc" javaType="com.it.bean.crop_category">
+        <id column="cc_id" jdbcType="INTEGER" property="ccId"></id>
+        <result column="crop_category" jdbcType="VARCHAR" property="cropCategory"/>
+          <result column="state" jdbcType="INTEGER" property="state"/>
+    </association>
+
+     <association property="cs" javaType="com.it.bean.crop_species">
+          <id column="cs_id" jdbcType="INTEGER" property="csId"></id>
+          <result column="cs_crop_species" jdbcType="VARCHAR" property="csCropSpecies"/>
+          <result column="cs_crop_category_id" jdbcType="INTEGER" property="csCropCategoryId"/>
+          <result column="cs_state" jdbcType="INTEGER" property="csState"/>
+      </association>
+
+      <association property="addP" javaType="com.it.bean.address_province">
+          <id column="p_id" jdbcType="INTEGER" property="pId"></id>
+          <result column="p_code" jdbcType="CHAR" property="pCode"/>
+          <result column="p_name" jdbcType="VARCHAR" property="pName"/>
+          <result column="chinaname" jdbcType="VARCHAR" property="chinaname"/>
+      </association>
+
+      <association property="addC" javaType="com.it.bean.address_city">
+          <id column="c_id" jdbcType="INTEGER" property="cId"/>
+          <result column="c_code" jdbcType="CHAR" property="cCode"/>
+          <result column="c_name" jdbcType="VARCHAR" property="cName"/>
+          <result column="provinceCode" jdbcType="CHAR" property="provincecode"/>
+      </association>
+
+      <association property="addT" javaType="com.it.bean.address_town">
+          <id column="t_id" jdbcType="INTEGER" property="tId"/>
+          <result column="t_code" jdbcType="CHAR" property="tCode"/>
+          <result column="t_name" jdbcType="VARCHAR" property="tName"/>
+          <result column="cityCode" jdbcType="CHAR" property="citycode"/>
+      </association>
+
+
+      <collection property="sti" ofType="com.it.bean.sample_toxin_info">
+    <id column="sti_id" jdbcType="INTEGER" property="stiId" />
+    <result column="toxin_type" jdbcType="VARCHAR" property="toxinType" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </collection>
+
+    <collection property="st" ofType="com.it.bean.sample_toxin">
+      <id column="st_id" jdbcType="INTEGER" property="stId" />
+      <result column="stiid" jdbcType="INTEGER" property="stiId" />
+      <result column="toxin_count" jdbcType="REAL" property="toxinCount" />
+    </collection>
+
+    <collection property="Bsi" ofType="com.it.bean.bacterial_strain_info">
+      <id column="bsi_id" jdbcType="INTEGER" property="id" />
+      <result column="sample_info_id" jdbcType="INTEGER" property="sampleInfoId" />
+      <result column="sample_num" jdbcType="VARCHAR" property="sampleNum" />
+      <result column="original_num" jdbcType="VARCHAR" property="originalNum" />
+      <result column="word_addr" jdbcType="VARCHAR" property="wordAddr" />
+      <result column="txt_addr" jdbcType="VARCHAR" property="txtAddr" />
+      <result column="picture_addr" jdbcType="VARCHAR" property="pictureAddr" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="isdel" jdbcType="INTEGER" property="isdel" />
+    </collection>
+  </resultMap>
+
+
+
+    <resultMap id="BaseResultMap2" type="com.it.bean.sample_info">
+        <id column="si_id" jdbcType="INTEGER" property="siId" />
+        <result column="sample_id" jdbcType="VARCHAR" property="sampleId" />
+        <result column="crop_category_id" jdbcType="INTEGER" property="cropCategoryId" />
+        <result column="breed" jdbcType="INTEGER" property="breed" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="county" jdbcType="VARCHAR" property="county" />
+        <result column="township" jdbcType="VARCHAR" property="township" />
+        <result column="village" jdbcType="VARCHAR" property="village" />
+        <result column="household" jdbcType="VARCHAR" property="household" />
+        <result column="harvest_time" jdbcType="TIMESTAMP" property="harvestTime" />
+        <result column="sampling_time" jdbcType="TIMESTAMP" property="samplingTime" />
+        <result column="sampling_people" jdbcType="VARCHAR" property="samplingPeople" />
+        <result column="seasonal" jdbcType="VARCHAR" property="Seasonal"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="pollution_rate" jdbcType="REAL" property="pollutionRate" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="isdel" jdbcType="INTEGER" property="isdel" />
+        <result column="input_time" jdbcType="TIMESTAMP" property="inputTime" />
+        <result column="flag" jdbcType="INTEGER" property="flag" />
+        <result column="enterpeople" jdbcType="INTEGER" property="enterpeople" />
+        <result column="varieties" jdbcType="VARCHAR" property="varieties" />
+        <result column="allToxin" jdbcType="VARCHAR" property="toxinsStr" />
+
+        <association property="cc" javaType="com.it.bean.crop_category">
+            <id column="cc_id" jdbcType="INTEGER" property="ccId"></id>
+            <result column="crop_category" jdbcType="VARCHAR" property="cropCategory"/>
+            <result column="state" jdbcType="INTEGER" property="state"/>
+        </association>
+
+        <association property="cs" javaType="com.it.bean.crop_species">
+            <id column="cs_id" jdbcType="INTEGER" property="csId"></id>
+            <result column="cs_crop_species" jdbcType="VARCHAR" property="csCropSpecies"/>
+            <result column="cs_crop_category_id" jdbcType="INTEGER" property="csCropCategoryId"/>
+            <result column="cs_state" jdbcType="INTEGER" property="csState"/>
+        </association>
+
+        <association property="addP" javaType="com.it.bean.address_province">
+            <id column="p_id" jdbcType="INTEGER" property="pId"></id>
+            <result column="p_code" jdbcType="CHAR" property="pCode"/>
+            <result column="p_name" jdbcType="VARCHAR" property="pName"/>
+            <result column="chinaname" jdbcType="VARCHAR" property="chinaname"/>
+        </association>
+
+        <association property="addC" javaType="com.it.bean.address_city">
+            <id column="c_id" jdbcType="INTEGER" property="cId"/>
+            <result column="c_code" jdbcType="CHAR" property="cCode"/>
+            <result column="c_name" jdbcType="VARCHAR" property="cName"/>
+            <result column="provinceCode" jdbcType="CHAR" property="provincecode"/>
+        </association>
+
+        <association property="addT" javaType="com.it.bean.address_town">
+            <id column="t_id" jdbcType="INTEGER" property="tId"/>
+            <result column="t_code" jdbcType="CHAR" property="tCode"/>
+            <result column="t_name" jdbcType="VARCHAR" property="tName"/>
+            <result column="cityCode" jdbcType="CHAR" property="citycode"/>
+        </association>
+        <collection property="st" ofType="com.it.bean.sample_toxin">
+            <id column="st_id" jdbcType="INTEGER" property="stId" />
+            <result column="stiid" jdbcType="INTEGER" property="stiId" />
+            <result column="toxin_count" jdbcType="REAL" property="toxinCount" />
+            <association property="sti" javaType="com.it.bean.sample_toxin_info">
+                <id column="sti_id" jdbcType="INTEGER" property="stiId" />
+                <result column="toxin_type" jdbcType="VARCHAR" property="toxinType" />
+                <result column="state" jdbcType="INTEGER" property="state" />
+            </association>
+        </collection>
+        <collection property="Bsi" ofType="com.it.bean.bacterial_strain_info">
+            <id column="bsi_id" jdbcType="INTEGER" property="id" />
+            <result column="sample_info_id" jdbcType="INTEGER" property="sampleInfoId" />
+            <result column="sample_num" jdbcType="VARCHAR" property="sampleNum" />
+            <result column="original_num" jdbcType="VARCHAR" property="originalNum" />
+            <result column="word_addr" jdbcType="VARCHAR" property="wordAddr" />
+            <result column="txt_addr" jdbcType="VARCHAR" property="txtAddr" />
+            <result column="picture_addr" jdbcType="VARCHAR" property="pictureAddr" />
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+            <result column="isdel" jdbcType="INTEGER" property="isdel" />
+        </collection>
+    </resultMap>
+
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.it.bean.sample_infoWithBLOBs">
+    <result column="seasonal" jdbcType="LONGVARCHAR" property="seasonal" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+
+  <resultMap id="BaseSt" type="com.it.bean.sample_toxin">
+    <id column="id" jdbcType="INTEGER" property="id"></id>
+    <result column="stiid" jdbcType="INTEGER" property="stiId"/>
+    <result column="toxin_count" javaType="Float" property="toxinCount"/>
+    <result column="sample_info_id" javaType="INTEGER" property="sampleInfoId"/>
+  </resultMap>
+
+  <resultMap id="BaseSti" type="com.it.bean.sample_toxin_info">
+      <id column="sti_id" jdbcType="INTEGER" property="stiId"></id>
+      <result column="toxin_type" jdbcType="VARCHAR" property="toxinType"/>
+      <result column="state" javaType="INTEGER" property="state"/>
+  </resultMap>
+
+    <resultMap id="Cc" type="com.it.bean.crop_category">
+        <id column="cc_id" jdbcType="INTEGER" property="ccId"></id>
+        <result column="crop_category" jdbcType="VARCHAR" property="cropCategory"/>
+        <result column="state" javaType="INTEGER" property="state"/>
+    </resultMap>
+
+    <resultMap id="Bsi" type="com.it.bean.bacterial_strain_info">
+        <id column="bsi_id" jdbcType="INTEGER" property="id" />
+        <result column="sample_info_id" jdbcType="INTEGER" property="sampleInfoId" />
+        <result column="sample_num" jdbcType="VARCHAR" property="sampleNum" />
+        <result column="original_num" jdbcType="VARCHAR" property="originalNum" />
+        <result column="word_addr" jdbcType="VARCHAR" property="wordAddr" />
+        <result column="txt_addr" jdbcType="VARCHAR" property="txtAddr" />
+        <result column="picture_addr" jdbcType="VARCHAR" property="pictureAddr" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="isdel" jdbcType="INTEGER" property="isdel" />
+    </resultMap>
+
+  <sql id="Base_Column_List">
+    id, sample_id, crop_category_id, breed, province, city, county, township, village, 
+    household, harvest_time, sampling_time, sampling_people, pollution_rate, create_time, 
+    isdel, input_time, flag, enterpeople, varieties
+  </sql>
+  <sql id="Blob_Column_List">
+    seasonal, description
+  </sql>
+<!--<select id="selectById" resultMap="BaseResultMap">
+        SELECT *
+		FROM sample_info info,sample_toxin toxin,sample_toxin_info toxininfo
+		WHERE info.id = toxin.sample_info_id AND toxin.toxin_id = toxininfo.id
+  </select>-->
+  <select id="selectById" resultMap="BaseResultMap">
+        /*select si.id sid,cs.id csid,st.id stid,sti.id stiid,si.sample_id,si.province,si.city,si.county, cs.crop_species,si.sampling_time,si.input_time,si.pollution_rate,GROUP_CONCAT(sti.toxin_type) allToxin*/
+      select *,GROUP_CONCAT(sti.toxin_type)  allToxin/*allToxin:数据库字段名*/
+        from sample_info si, sample_toxin st, sample_toxin_info sti, crop_species cs
+        where si.breed = cs.cs_id
+        and si.si_id = st.sample_info_id
+        and st.stiid = sti.sti_id
+        and si.isdel= 0
+        GROUP BY si.si_id
+        having  1=1
+      <if test="sampleId != null and sampleId != ''">
+        and si.sample_id like  concat('%', #{sampleId}, '%')
+      </if>
+      <if test="start != null and start != ''">
+        AND si.pollution_rate BETWEEN #{start} AND  #{end}
+      </if>
+      <if test="inputtime != null and inputtime != ''">
+        AND si.input_time like  concat(#{inputtime}, '%')
+      </if>
+      <if test="toxinType != null and toxinType != ''" >
+           AND sti.sti_id  = #{toxinType}
+      </if>
+      <if test="cropSpecies != null and cropSpecies != ''">
+           and  si.breed = #{cropSpecies}
+      </if>
+    <if test="province != null and province != ''">
+      and  si.province = (
+      select  p_name from  address_province  where p_code = #{province}
+      )
+    </if>
+    <if test="city != null and city != ''">
+      and  si.city = (
+      select  c_name from  address_city  where c_code = #{city}
+      )
+    </if>
+    <if test="county != null and county != ''">
+      and  si.county = (
+      select  t_name from  address_town  where t_code = #{county}
+      )
+    </if>
+
+  </select>
+  <!--添加样品表-->
+  <insert id="insertSi" parameterType="com.it.bean.sample_info" useGeneratedKeys="true" keyProperty="siId">
+      <selectKey keyProperty="siId" resultType="Integer" order="AFTER">
+          select LAST_INSERT_ID();
+      </selectKey>
+    insert into sample_info (sample_id,isdel,crop_category_id, breed,province,city,county,sampling_people,seasonal,
+    description,pollution_rate,harvest_time,sampling_time)
+     values (#{sampleId},0,#{cropCategoryId},#{breed},#{province},#{city},#{county},#{samplingPeople},#{Seasonal},
+    #{description},#{pollutionRate},#{harvestTimeA},#{samplingTimeA})
+  </insert>
+  <!--添加中间表-->
+ <insert id="insertSt" parameterType="com.it.bean.sample_toxin">
+   insert into sample_toxin (stiid,toxin_count,sample_info_id)
+   values (#{stiId},#{toxinCount},#{sampleInfoId})
+ </insert>
+  <!--查询毒素表全部-->
+ <select id="seleinfo" resultMap="BaseSti">
+     select * from sample_toxin_info
+ </select>
+  <!--添加菌株表全部-->
+ <insert id="insertBsi" parameterType="com.it.bean.bacterial_strain_info">
+   insert into bacterial_strain_info (sample_info_id,original_num,word_addr,txt_addr,picture_addr,sample_num)
+   values (#{sampleInfoId},#{originalNum},#{wordAddr},#{txtAddr},#{pictureAddr},#{sampleNum})
+ </insert>
+   <!--批量删除 -->
+  <update id="deleteAll">
+    update sample_info set  isdel = 1 where si_id = #{siId}
+  </update>
+    <!--修改回显样品表和品种，种类下拉框 -->
+  <select id="findAll" resultMap="BaseResultMap2">
+      select *
+      from sample_info si,crop_category cc,crop_species cs,sample_toxin st,sample_toxin_info sti
+      where si.si_id = #{siId}
+      and cs.cs_crop_category_id = cc.cc_id
+      and si.breed = cs.cs_id
+      and st.sample_info_id = si.si_id
+      and st.stiid = sti.sti_id
+
+  </select>
+    <!--修改回显省下拉框 -->
+  <select id="l" resultMap="BaseResultMap">
+      select si.province,ap.* from sample_info si,address_province ap
+       where si.province = ap.p_code
+       and si.si_id = #{siId}
+  </select>
+    <!--修改回显市下拉框 -->
+  <select id="c" resultMap="BaseResultMap">
+      select si.city,ac.* from sample_info si,address_city ac where si.city = ac.c_code
+       and si.si_id = #{siId}
+  </select>
+    <!--修改回显县下拉框 -->
+  <select id="t" resultMap="BaseResultMap">
+      select si.county,att.* from sample_info si,address_town att where si.county = att.t_code
+       and si.si_id = #{siId}
+  </select>
+   <!--修改回显样品表对应的毒素信息-->
+    <select id="sti" resultMap="BaseSti">
+       SELECT *
+        FROM sample_toxin_info sti
+    </select>
+
+    <select id="bsi" resultMap="Bsi">
+      SELECT * FROM sample_info si,bacterial_strain_info bsi
+		WHERE si.si_id = #{siId}
+		and bsi.sample_info_id = si.si_id
+    </select>
+    <!--修改样品表-->
+    <update id="info" parameterType="com.it.bean.sample_info">
+        update sample_info
+        set sample_id = #{si.sampleId},crop_category_id = #{si.cropCategoryId},
+        breed = #{si.breed},province = #{si.province},city = #{si.city},county = #{si.county},
+        harvest_time = #{si.harvestTimeA},sampling_time = #{si.samplingTimeA},sampling_people = #{si.samplingPeople},
+        seasonal = #{si.Seasonal},description = #{si.description},pollution_rate = #{si.pollutionRate}
+        where si_id = #{siId}
+    </update>
+    <!--修改中间表对应的毒素和毒素含量  删除-->
+    <delete id="toxin" parameterType="com.it.bean.sample_toxin">
+      delete from sample_toxin
+      where sample_info_id = #{siId}
+    </delete>
+
+    <!--修改中间表添加-->
+    <insert id="updateSt" parameterType="com.it.bean.sample_toxin">
+     insert into sample_toxin (stiid,toxin_count,sample_info_id)
+     values (#{stiId},#{toxinCount},#{sampleInfoId})
+    </insert>
+
+    <!--修改菌株表删除-->
+    <delete id="Bsi" parameterType="com.it.bean.bacterial_strain_info">
+       delete from bacterial_strain_info
+      where sample_info_id = #{siId}
+    </delete>
+    <!--修改中间表添加-->
+    <insert id="updateBsi" parameterType="com.it.bean.sample_toxin">
+     insert into bacterial_strain_info (original_num,word_addr,txt_addr,picture_addr)
+     values (#{originalNum},#{wordAddr},#{txtAddr},#{pictureAddr})
+    </insert>
+    
+    <!--修改单条-->
+    <update id="isdel" parameterType="com.it.bean.sample_info">
+        update sample_info set  isdel = 1 where si_id = #{siId}
+    </update>
+
+    <!--导出查询-->
+    <select id="SinFo" resultMap="BaseResultMap">
+        select si.*,st.*,sti.*,cs.*,ap.p_code,ap.p_name,ac.c_code,ac.c_name,atc.t_code,atc.t_name,GROUP_CONCAT(sti.toxin_type)  allToxin/*allToxin:数据库字段名*/
+        from sample_info si
+			   left outer join	sample_toxin st
+			  on si.si_id = st.sample_info_id
+		     left outer join	sample_toxin_info sti
+				on st.stiid = sti.sti_id
+				 left outer join crop_species cs
+				on si.breed = cs.cs_id
+				 left outer join address_province ap
+				on si.province = ap.p_code
+				 left outer join address_city ac
+				on si.city = ac.c_code
+				 left outer join address_town atc
+				on si.county = atc.t_code
+				GROUP BY si.si_id
+                 having  1=1
+    </select>
+
+    <!--导入添加方法 样品表-->
+    <insert id="insertSinFo" parameterType="com.it.bean.sample_info" useGeneratedKeys="true" keyProperty="siId">
+        <selectKey keyProperty="siId" resultType="Integer" order="AFTER">
+            select LAST_INSERT_ID();
+        </selectKey>
+        insert into sample_info (sample_id,isdel,crop_category_id, breed,province,city,county,sampling_people,seasonal,
+        description,pollution_rate,harvest_time,sampling_time)
+        values (#{sampleId},0,#{cropCategoryId},#{breed},#{province},#{city},#{county},#{samplingPeople},#{Seasonal},
+        #{description},#{pollutionRate},#{harvestTimeA},#{samplingTimeA})
+    </insert>
+    <!--导入添加方法 中间表-->
+    <insert id="insertStt" parameterType="com.it.bean.sample_toxin">
+     insert into sample_toxin (stiid,toxin_count,sample_info_id)
+     values (#{stiId},#{toxinCount},#{sampleInfoId})
+    </insert>
+
+    <!--导入样品表 种类信息-->
+    <select id="seleCs" resultType="com.it.bean.crop_species">
+        select * from crop_species where cs_crop_species = #{csCropSpecies}
+    </select>
+
+    <!--导入样品表 品种信息-->
+    <select id="seleCC" resultMap="Cc">
+        select * from crop_category cc,crop_species cs where cc.cc_id = cs.cs_crop_category_id
+    </select>
+    <!--导入  省-->
+    <select id="Sheng" resultType="com.it.bean.address_province">
+        select * from address_province where p_name = #{pName}
+    </select>
+    <!--导入 市-->
+    <select id="Shi" resultType="com.it.bean.address_city">
+        select * from address_city ac where c_name = #{cName} and provinceCode = #{provincecode}
+    </select>
+
+    <!--导入 县-->
+    <select id="Xian" resultType="com.it.bean.address_town">
+        select * from address_town att where t_name = #{tName} and cityCode = #{citycode}
+    </select>
+</mapper>

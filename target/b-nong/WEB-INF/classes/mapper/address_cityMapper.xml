@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.addCityDao">
+  <resultMap id="BaseResultMap" type="com.it.bean.address_city">
+    <id column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="c_code" jdbcType="CHAR" property="cCode" />
+    <result column="c_name" jdbcType="VARCHAR" property="cName" />
+    <result column="provinceCode" jdbcType="CHAR" property="provincecode" />
+  </resultMap>
+  <select id="addCity" resultMap="BaseResultMap">
+    select ac.* from address_city ac where ac.provinceCode = #{pCode}
+  </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.addProDao">
+  <resultMap id="BaseResultMap" type="com.it.bean.address_province">
+    <id column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="p_code" jdbcType="CHAR" property="pCode" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="chinaname" jdbcType="VARCHAR" property="chinaname" />
+  </resultMap>
+
+  <select id="addPro" resultMap="BaseResultMap">
+    select * from address_province
+  </select>
+</mapper>

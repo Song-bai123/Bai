@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.addTown">
+  <resultMap id="BaseResultMap" type="com.it.bean.address_town">
+    <id column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="t_code" jdbcType="CHAR" property="tCode" />
+    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+    <result column="cityCode" jdbcType="CHAR" property="citycode" />
+  </resultMap>
+  <select id="addt" resultMap="BaseResultMap">
+    select ato.* from address_town ato where ato.cityCode = #{citycode}
+  </select>
+</mapper>
